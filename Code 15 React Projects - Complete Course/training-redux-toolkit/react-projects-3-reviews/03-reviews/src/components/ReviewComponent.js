@@ -26,7 +26,7 @@ const ReviewComponent = () => {
       <div className="img-container">
         <img src={image} alt={name} className="person-img"></img>
         <span className="quote-icon">
-          <FaQuoteRight/>
+          <FaQuoteRight />
         </span>
       </div>
       <h4 className="author">{name}</h4>
