@@ -11,12 +11,38 @@ main {
     .container {
         width: 80vw;
         max-width: 620px;
+
+        .title {
+            text-align: center;
+            position: relative;
+            max-width: 300px;
+            margin: 0 auto 4rem auto;
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: -1rem;
+                left: 50%;
+                transform: translate(-50%);
+                height: 0.25rem;
+                width: 30%;
+                background-color: rgb(73, 166, 233);
+                position: absolute;
+            }
+        }
     }
 
     .review {
         background: #fff;
         padding: 1.5rem 2rem;
         text-align: center;
+        transition: box-shadow 0.3s linear;
+        border-radius: 0.25rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
     }
 
     .img-container {
