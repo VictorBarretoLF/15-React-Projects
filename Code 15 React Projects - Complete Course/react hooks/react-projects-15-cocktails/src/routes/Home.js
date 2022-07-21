@@ -1,9 +1,10 @@
 import React from 'react';
+import CocktailList from '../components/CocktailList';
 
 const Home = () => {
     return (
         <div>
-            Home Page
+            <CocktailList/>
         </div>
     );
 };
