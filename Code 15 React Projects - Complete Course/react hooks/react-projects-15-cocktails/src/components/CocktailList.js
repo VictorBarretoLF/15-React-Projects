@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Cocktail from "./Cocktail";
 import Loading from "./Loading";
 import "./scss/cocktail-list.styles.scss";
 
@@ -13,6 +13,10 @@ const CocktailList = () => {
   useEffect(() => {
     fetchDrinks();
   }, []);
+
+  useEffect(() => {
+    fetchDrinks();
+  }, [search]);
 
   const fetchDrinks = async () => {
     setLoading(true);
@@ -37,7 +41,15 @@ const CocktailList = () => {
   };
 
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
+  }
+
+  if (cocktails.length < 1) {
+    return (
+      <h2 className="section-title">
+        no cocktails matched your search criteria
+      </h2>
+    );
   }
 
   return (
@@ -45,19 +57,7 @@ const CocktailList = () => {
       <h2 className="section-title">cocktails</h2>
       <div className="cocktails-center">
         {cocktails.map((cocktail) => {
-          return (
-            <article className="cocktail">
-              <div className="img-container">
-                <img src={cocktail.image} alt={cocktail.name}></img>
-              </div>
-              <div className="cocktail-footer">
-                <h3>{cocktail.name}</h3>
-                <h4>{cocktail.glass}</h4>
-                <p>{cocktail.info}</p>
-                <Link className='btn btn-primary btn-details' to={`/cocktail/${cocktail.id}`}>details</Link>
-              </div>
-            </article>
-          );
+          return <Cocktail key={cocktail.id} {...cocktail} />;
         })}
       </div>
     </section>
