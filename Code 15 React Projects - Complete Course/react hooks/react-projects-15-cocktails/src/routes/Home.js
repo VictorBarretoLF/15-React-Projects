@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import CocktailList from "../components/CocktailList";
+import SearchForm from "../components/SearchForm";
 
 const Home = () => {
+  const [search, setSearch] = useState("");
+
   return (
     <div>
-      <CocktailList />
+      <SearchForm setSearch={setSearch}/>
+      <CocktailList search={search} />
     </div>
   );
 };

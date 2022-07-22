@@ -4,10 +4,9 @@ import Loading from "./Loading";
 
 const BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
-const CocktailList = () => {
+const CocktailList = ({ search }) => {
   const [loading, setLoading] = useState(true);
   const [cocktails, setCocktails] = useState([]);
-  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetchDrinks();
