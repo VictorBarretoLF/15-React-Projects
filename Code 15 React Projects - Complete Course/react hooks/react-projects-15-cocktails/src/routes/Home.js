@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <div>
-      <SearchForm setSearch={setSearch}/>
+      <SearchForm setSearch={setSearch} />
       <CocktailList search={search} />
     </div>
   );
