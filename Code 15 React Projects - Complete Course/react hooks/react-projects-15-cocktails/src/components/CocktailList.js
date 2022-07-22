@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Cocktail from "./Cocktail";
 import Loading from "./Loading";
-import "./scss/cocktail-list.styles.scss";
 
 const BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 

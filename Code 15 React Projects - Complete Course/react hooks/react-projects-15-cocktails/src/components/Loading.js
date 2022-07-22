@@ -1,4 +1,3 @@
-import "./scss/loading.styles.scss";
 
 const Loading = () => {
   return (

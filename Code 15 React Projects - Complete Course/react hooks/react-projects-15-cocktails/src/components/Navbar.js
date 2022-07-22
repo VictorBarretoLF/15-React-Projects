@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, Outlet } from "react-router-dom";
 import logo from "../utils/svg/logo.svg";
-import "./scss/navbar.styles.scss";
 
 const navLinks = [
   {
