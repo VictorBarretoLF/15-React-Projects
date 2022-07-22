@@ -18,23 +18,28 @@ const CocktailList = ({ search }) => {
 
   const fetchDrinks = async () => {
     setLoading(true);
+
     const response = await fetch(`${BASE_URL}${search}`);
     const data = await response.json();
     const { drinks } = data;
+    if (drinks) {
+      const cleanCocktails = drinks.map(
+        ({ idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass }) => {
+          return {
+            id: idDrink,
+            name: strDrink,
+            image: strDrinkThumb,
+            info: strAlcoholic,
+            glass: strGlass,
+          };
+        }
+      );
 
-    const cleanCocktails = drinks.map(
-      ({ idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass }) => {
-        return {
-          id: idDrink,
-          name: strDrink,
-          image: strDrinkThumb,
-          info: strAlcoholic,
-          glass: strGlass,
-        };
-      }
-    );
+      setCocktails(cleanCocktails);
+    } else {
+      setCocktails([]);
+    }
 
-    setCocktails(cleanCocktails);
     setLoading(false);
   };
 
