@@ -36,6 +36,7 @@ const SingleCocktail = () => {
         strIngredient4,
         strIngredient5,
       } = drinks[0];
+      
       const ingredients = [
         strIngredient1,
         strIngredient2,
@@ -49,10 +50,10 @@ const SingleCocktail = () => {
         info: strAlcoholic,
         category: strCategory,
         glass: strGlass,
-        intructions: strInstructions,
+        instructions: strInstructions,
         ingredients,
       };
-
+      console.log(newCocktail)
       setCocktail(newCocktail);
     } else {
       setCocktail(null);
@@ -88,7 +89,7 @@ const SingleCocktail = () => {
             <span className="drink-data">glass :</span> {glass}
           </p>
           <p>
-            <span className="drink-data">instructons :</span> {instructions}
+            <span className="drink-data">instructions :</span> {instructions}
           </p>
           <p>
             <span className="drink-data">ingredients :</span>
