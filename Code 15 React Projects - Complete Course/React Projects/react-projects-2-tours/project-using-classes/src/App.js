@@ -1,5 +1,6 @@
 import "./App.css";
 import { Component } from "react";
+import Tours from "./components/Tours";
 
 class App extends Component {
   constructor() {
@@ -30,9 +31,9 @@ class App extends Component {
   };
 
   removeTour = (id) => {
-    const newTours = this.state.tours.filter((tour) => tour.id !== id)
-    this.setState({tours : newTours})
-  }
+    const newTours = this.state.tours.filter((tour) => tour.id !== id);
+    this.setState({ tours: newTours });
+  };
 
   render() {
     const { loading, tours } = this.state;
@@ -62,31 +63,7 @@ class App extends Component {
 
     return (
       <main>
-        <section>
-          <div className="title">
-            <h2>our tours</h2>
-            <div className="underline"></div>
-          </div>
-          <div>
-            {tours.map(({ id, image, info, name, price }) => {
-              return (
-                <article key={id} className="single-tour">
-                  <img src={image} alt={name} />
-                  <footer>
-                    <div className="tour-info">
-                      <h4>{name}</h4>
-                      <h4 className="tour-price">${price}</h4>
-                    </div>
-                    <p>{info}</p>
-                    <button className="delete-btn" onClick={() => this.removeTour(id)}>
-                      not interested
-                    </button>
-                  </footer>
-                </article>
-              );
-            })}
-          </div>
-        </section>
+        <Tours tours={tours} removeTour={this.removeTour} />
       </main>
     );
   }
