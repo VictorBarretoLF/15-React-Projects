@@ -6,6 +6,7 @@ class App extends Component {
   constructor() {
     super();
     this.URL = "https://course-api.com/react-tours-project";
+    this.fetchTours = this.fetchTours.bind(this);
     this.state = {
       loading: true,
       tours: [],
@@ -53,7 +54,7 @@ class App extends Component {
         <main>
           <div className="title">
             <h2>no tours left</h2>
-            <button className="btn" onClick={() => {}}>
+            <button className="btn" onClick={this.fetchTours}>
               refresh
             </button>
           </div>
