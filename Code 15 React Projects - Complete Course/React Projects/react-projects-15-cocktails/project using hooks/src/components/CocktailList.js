@@ -14,7 +14,10 @@ const CocktailList = ({ search }) => {
 
   useEffect(() => {
     // procurar entender o porquê esse useEffect é acionado quando o state não mudou.
-    fetchDrinks();
+    // resolvido o de cahar a api várias vezes usando um if statement
+    if (search !== "") {
+      fetchDrinks();
+    }
   }, [search]);
 
   const fetchDrinks = async () => {
@@ -23,7 +26,7 @@ const CocktailList = ({ search }) => {
     const response = await fetch(`${BASE_URL}${search}`);
     const data = await response.json();
     const { drinks } = data;
-    console.log(drinks);
+
     if (drinks) {
       const cleanCocktails = drinks.map(
         ({ idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass }) => {
