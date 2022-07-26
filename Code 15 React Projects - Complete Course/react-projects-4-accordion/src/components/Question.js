@@ -17,8 +17,13 @@ class Question extends Component {
       <article className="question">
         <header>
           <h4>{title}</h4>
-          <button className="btn">
-            <AiOutlinePlus />
+          <button
+            className="btn"
+            onClick={() => {
+              this.setState({ showInfo: !showInfo });
+            }}
+          >
+            {showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}
           </button>
         </header>
         {showInfo && <p>{info}</p>}
