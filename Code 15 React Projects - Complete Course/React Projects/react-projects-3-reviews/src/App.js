@@ -1,15 +1,21 @@
-import "./App.scss";
-import ReviewComponent from "./components/ReviewComponent";
+import React, { Component } from "react";
+import Review from "./components/Review";
+import "./App.css";
 
-function App() {
-  return (
-    <main>
-      <section className="container">
-        <h2 className="title">Our Reviews</h2>
-        <ReviewComponent />
-      </section>
-    </main>
-  );
+class App extends Component {
+  render() {
+    return (
+      <main>
+        <section className="container">
+          <div className="title">
+            <h2>our reviews</h2>
+            <div className="underline"></div>
+          </div>
+          <Review />
+        </section>
+      </main>
+    );
+  }
 }
 
 export default App;
