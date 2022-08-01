@@ -1,4 +1,5 @@
 import "./App.css";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 import React, { Component } from "react";
 
@@ -19,6 +20,10 @@ class App extends Component {
     const newJobs = await response.json();
 
     this.setState({ loading: false, jobs: newJobs });
+  };
+
+  onClickHandler = (index) => () => {
+    this.setState({ value: index });
   };
 
   componentDidMount = () => {
@@ -44,13 +49,34 @@ class App extends Component {
         </div>
         <div className="jobs-center">
           {/* btn container*/}
+          <div className="btn-container">
+            {jobs.map((item, index) => {
+              return (
+                <button
+                  key={item.id}
+                  onClick={this.onClickHandler(index)}
+                  className={`job-btn ${index === value && "active-btn"}`}
+                >
+                  {item.company}
+                </button>
+              );
+            })}
           </div>
           {/* job info */}
-        <article className="job-info">
-          <h3>{title}</h3>
-          <h4>{company}</h4>
-          <p className="job-date">{dates}</p>
-        </article>
+          <article className="job-info">
+            <h3>{title}</h3>
+            <h4>{company}</h4>
+            <p className="job-date">{dates}</p>
+            {duties.map((duty, index) => {
+              return (
+                <div key={index} className="job-desc">
+                  <FaAngleDoubleRight className="job-icon"></FaAngleDoubleRight>
+                  <p>{duty}</p>
+                </div>
+              );
+            })}
+          </article>
+        </div>
       </section>
     );
   }
