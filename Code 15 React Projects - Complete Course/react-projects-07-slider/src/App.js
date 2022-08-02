@@ -1,13 +1,14 @@
-import './App.css';
+import "./App.css";
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from "react";
+import Slider from "./components/Slider";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        ok
-      </div>
+      <Fragment>
+        <Slider />
+      </Fragment>
     );
   }
 }
