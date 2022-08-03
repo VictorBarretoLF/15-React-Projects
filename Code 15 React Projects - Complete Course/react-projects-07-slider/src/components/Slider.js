@@ -12,6 +12,33 @@ class Slider extends Component {
     };
   }
 
+  correctIndex = (nextNumber) => {
+    const lastIndex = this.state.people.length - 1;
+    if (nextNumber < 0) return { index: lastIndex };
+    if (nextNumber > lastIndex) return { index: 0 };
+    return { index: nextNumber };
+  };
+
+  nextSlide = () => {
+    const lastIndex = this.state.people.length - 1;
+    const next = this.state.index + 1
+    if (next > lastIndex) this.setState({index : 0})
+    else this.setState({index : next})
+  }
+
+  prevSlide = () => {
+    const lastIndex = this.state.people.length - 1;
+    const prev = this.state.index - 1
+    if(prev < 0) this.setState({index : lastIndex})
+  }
+
+  componentDidMount() {
+    let num = setInterval(() => {
+      this.nextSlide()
+    }, 1000)
+    return () => clearInterval(num)
+  }
+
   render() {
     return (
       <section className="section">
@@ -21,37 +48,39 @@ class Slider extends Component {
           </h2>
         </div>
         <div className="section-center">
-          {this.state.people.map(({ id, image, name, title, quote }, index) => {
-            let position = "nextSlide";
-            if (index === this.state.index) position = "activeSlide";
-            if (
-              this.state.index === index - 1 ||
-              (index === 0 && index === this.state.people.length - 1)
-            )
-              position = "lastSlide";
-            return (
-              <article className={position} key={id}>
-                <img src={image} alt={name} className="person-img" />
-                <h4>{name}</h4>
-                <p className="title">{title}</p>
-                <p className="text">{quote}</p>
-                <FaQuoteRight className="icon" />
-              </article>
-            );
-          })}
+          {this.state.people.map(
+            ({ id, image, name, title, quote }, personIndex) => {
+              let position = "nextSlide";
+              if (personIndex === this.state.index) position = "activeSlide";
+              if (
+                personIndex === this.state.index - 1 ||
+                (this.state.index === 0 &&
+                  personIndex === this.state.people.length - 1)
+              )
+                position = "lastSlide";
+              return (
+                <article className={position} key={id}>
+                  <img src={image} alt={name} className="person-img" />
+                  <h4>{name}</h4>
+                  <p className="title">{title}</p>
+                  <p className="text">{quote}</p>
+                  <FaQuoteRight className="icon" />
+                </article>
+              );
+            }
+          )}
           <button
             className="prev"
             onClick={() => {
-              this.setState({ index: this.state.index - 1 });
+              const nextNumber = this.state.index - 1;
+              this.setState(this.correctIndex(nextNumber));
             }}
           >
             <FiChevronLeft />
           </button>
           <button
             className="next"
-            onClick={() => {
-              this.setState({ index: this.state.index + 1 });
-            }}
+            onClick={this.nextSlide}
           >
             <FiChevronRight />
           </button>
