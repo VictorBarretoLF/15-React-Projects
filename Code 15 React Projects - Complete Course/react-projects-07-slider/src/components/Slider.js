@@ -39,10 +39,20 @@ class Slider extends Component {
               </article>
             );
           })}
-          <button className="prev">
+          <button
+            className="prev"
+            onClick={() => {
+              this.setState({ index: this.state.index - 1 });
+            }}
+          >
             <FiChevronLeft />
           </button>
-          <button className="next">
+          <button
+            className="next"
+            onClick={() => {
+              this.setState({ index: this.state.index + 1 });
+            }}
+          >
             <FiChevronRight />
           </button>
         </div>
