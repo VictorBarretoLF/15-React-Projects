@@ -13,13 +13,6 @@ class Slider extends Component {
     };
   }
 
-  correctIndex = (nextNumber) => {
-    const lastIndex = this.state.people.length - 1;
-    if (nextNumber < 0) return { index: lastIndex };
-    if (nextNumber > lastIndex) return { index: 0 };
-    return { index: nextNumber };
-  };
-
   nextSlide = () => {
     const lastIndex = this.state.people.length - 1;
     const next = this.state.index + 1;
@@ -31,6 +24,7 @@ class Slider extends Component {
     const lastIndex = this.state.people.length - 1;
     const prev = this.state.index - 1;
     if (prev < 0) this.setState({ index: lastIndex });
+    else this.setState({index : prev})
   };
 
   componentDidMount() {
@@ -79,10 +73,7 @@ class Slider extends Component {
           )}
           <button
             className="prev"
-            onClick={() => {
-              const nextNumber = this.state.index - 1;
-              this.setState(this.correctIndex(nextNumber));
-            }}
+            onClick={this.prevSlide}
           >
             <FiChevronLeft />
           </button>
