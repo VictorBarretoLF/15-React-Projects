@@ -9,6 +9,7 @@ class Slider extends Component {
     this.state = {
       people: people,
       index: 0,
+      pause: true,
     };
   }
 
@@ -21,22 +22,21 @@ class Slider extends Component {
 
   nextSlide = () => {
     const lastIndex = this.state.people.length - 1;
-    const next = this.state.index + 1
-    if (next > lastIndex) this.setState({index : 0})
-    else this.setState({index : next})
-  }
+    const next = this.state.index + 1;
+    if (next > lastIndex) this.setState({ index: 0 });
+    else this.setState({ index: next });
+  };
 
   prevSlide = () => {
     const lastIndex = this.state.people.length - 1;
-    const prev = this.state.index - 1
-    if(prev < 0) this.setState({index : lastIndex})
-  }
+    const prev = this.state.index - 1;
+    if (prev < 0) this.setState({ index: lastIndex });
+  };
 
   componentDidMount() {
-    let num = setInterval(() => {
-      this.nextSlide()
-    }, 1000)
-    return () => clearInterval(num)
+    setInterval(() => {
+      if (this.state.pause) this.nextSlide();
+    }, 5000);
   }
 
   render() {
@@ -47,7 +47,15 @@ class Slider extends Component {
             <span>/</span>reviews
           </h2>
         </div>
-        <div className="section-center">
+        <div
+          className="section-center"
+          onMouseLeave={() => {
+            this.setState({ pause: true });
+          }}
+          onMouseOver={() => {
+            this.setState({ pause: false });
+          }}
+        >
           {this.state.people.map(
             ({ id, image, name, title, quote }, personIndex) => {
               let position = "nextSlide";
@@ -78,10 +86,7 @@ class Slider extends Component {
           >
             <FiChevronLeft />
           </button>
-          <button
-            className="next"
-            onClick={this.nextSlide}
-          >
+          <button className="next" onClick={this.nextSlide}>
             <FiChevronRight />
           </button>
         </div>
