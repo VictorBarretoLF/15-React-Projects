@@ -45,7 +45,7 @@ const CocktailList = ({ search }) => {
       setCocktails([]);
     }
 
-    setLoading(false);
+    setLoading(true);
   };
 
   if (loading) {

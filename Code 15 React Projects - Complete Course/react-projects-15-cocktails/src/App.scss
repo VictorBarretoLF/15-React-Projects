@@ -153,7 +153,7 @@ img {
     left: 0%;
     top: 0%;
     animation: rotate-one 1s linear infinite;
-    border-bottom: 5px solid green;
+    border-bottom: 5px solid blue;
 
     @keyframes rotate-one {
       0% {
@@ -169,7 +169,7 @@ img {
     right: 0%;
     top: 0%;
     animation: rotate-two 1s linear infinite;
-    border-right: 5px solid green;
+    border-right: 5px solid blue;
 
     @keyframes rotate-two {
       0% {
@@ -185,7 +185,7 @@ img {
     right: 0%;
     bottom: 0%;
     animation: rotate-three 1s linear infinite;
-    border-top: 5px solid green;
+    border-top: 5px solid blue;
 
     @keyframes rotate-three {
       0% {

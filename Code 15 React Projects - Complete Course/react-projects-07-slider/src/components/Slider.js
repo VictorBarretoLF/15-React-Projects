@@ -24,7 +24,7 @@ class Slider extends Component {
     const lastIndex = this.state.people.length - 1;
     const prev = this.state.index - 1;
     if (prev < 0) this.setState({ index: lastIndex });
-    else this.setState({index : prev})
+    else this.setState({ index: prev });
   };
 
   componentDidMount() {
@@ -71,10 +71,7 @@ class Slider extends Component {
               );
             }
           )}
-          <button
-            className="prev"
-            onClick={this.prevSlide}
-          >
+          <button className="prev" onClick={this.prevSlide}>
             <FiChevronLeft />
           </button>
           <button className="next" onClick={this.nextSlide}>
