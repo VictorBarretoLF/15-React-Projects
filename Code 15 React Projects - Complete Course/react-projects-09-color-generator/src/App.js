@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
 
+import Values from "values.js";
+
 class App extends Component {
   constructor() {
     super();
@@ -13,7 +15,13 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hello");
+    try {
+      let colors = new Values(this.state.color).all(10);
+      console.log(colors);
+    } catch (error) {
+      this.setState({error : true})
+      console.error(error)
+    }
   };
   render() {
     return (
@@ -25,9 +33,10 @@ class App extends Component {
               type="text"
               value={this.state.color}
               onChange={(e) => {
-                console.log(e);
+                this.setState({ color: e.target.value });
               }}
               placeholder="#f15025"
+              className={`${this.state.error ? 'error' : null}`}
             />
             <button className="btn" type="submit">
               submit
