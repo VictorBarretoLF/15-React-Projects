@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      color: "",
+      error: false,
+      list: [],
+    };
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("hello");
+  };
+  render() {
+    return (
+      <Fragment>
+        <section className="container">
+          <h3>color generator</h3>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              value={this.state.color}
+              onChange={(e) => {
+                console.log(e);
+              }}
+              placeholder="#f15025"
+            />
+            <button className="btn" type="submit">
+              submit
+            </button>
+          </form>
+        </section>
+        <section className="colors">
+          <h4>list goes here</h4>
+        </section>
+      </Fragment>
+    );
+  }
 }
 
 export default App;
