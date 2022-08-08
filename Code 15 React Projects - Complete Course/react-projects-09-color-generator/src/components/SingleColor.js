@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import rgbToHex from "../utils/utils";
 
 class SingleColor extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       alert: false,
     };
