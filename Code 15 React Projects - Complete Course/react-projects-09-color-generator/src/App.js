@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import "./App.css";
 
 import Values from "values.js";
+import SingleColor from "./components/SingleColor";
 
 class App extends Component {
   constructor() {
@@ -9,7 +10,7 @@ class App extends Component {
     this.state = {
       color: "",
       error: false,
-      list: [],
+      list: new Values('#f15025').all(10),
     };
   }
 
@@ -17,12 +18,14 @@ class App extends Component {
     e.preventDefault();
     try {
       let colors = new Values(this.state.color).all(10);
-      console.log(colors);
+      this.setState({ error: false, list : colors});
+      console.log(this.state)
     } catch (error) {
-      this.setState({error : true})
-      console.error(error)
+      this.setState({ error: true });
+      console.error(error);
     }
   };
+
   render() {
     return (
       <Fragment>
@@ -36,7 +39,7 @@ class App extends Component {
                 this.setState({ color: e.target.value });
               }}
               placeholder="#f15025"
-              className={`${this.state.error ? 'error' : null}`}
+              className={`${this.state.error ? "error" : null}`}
             />
             <button className="btn" type="submit">
               submit
@@ -44,7 +47,9 @@ class App extends Component {
           </form>
         </section>
         <section className="colors">
-          <h4>list goes here</h4>
+          {this.state.list.map((color, index) => {
+            return <SingleColor key={index} index={index} {...color} />;
+          })}
         </section>
       </Fragment>
     );
