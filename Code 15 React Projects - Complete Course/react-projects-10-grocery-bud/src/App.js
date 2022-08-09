@@ -23,6 +23,7 @@ class App extends Component {
       // deal with edit
     } else {
       // show alert
+      this.showAlert(true, "success", "item added to the list");
       const newItem = { id: new Date().getTime().toString(), title: name };
       this.setState({ list: [...list, newItem] }, () => {
         console.log(this.state);
@@ -42,8 +43,14 @@ class App extends Component {
     return () => clearTimeout(fnc);
   };
 
+  clearList = () => {
+    this.showAlert(true, "danger", "empty list");
+    this.setState({ list: [] });
+  };
+
   render() {
     const { alert, isEditing, name, list } = this.state;
+    const { clearList } = this;
     return (
       <section className="section-center">
         <form className="grocery-form" onSubmit={this.handleSubmit}>
@@ -67,7 +74,9 @@ class App extends Component {
         {list.length > 0 && (
           <div className="grocery-container">
             <List items={list} />
-            <button className="clear-btn">clear it</button>
+            <button className="clear-btn" onClick={clearList}>
+              clear it
+            </button>
           </div>
         )}
       </section>
