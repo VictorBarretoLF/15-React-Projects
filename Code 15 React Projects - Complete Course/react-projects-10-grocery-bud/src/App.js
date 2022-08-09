@@ -18,7 +18,7 @@ class App extends Component {
     e.preventDefault();
     const { name, isEditing, list } = this.state;
     if (!name) {
-      // display alert
+      this.showAlert(true, "danger", "please enter value");
     } else if (name && isEditing) {
       // deal with edit
     } else {
@@ -31,12 +31,23 @@ class App extends Component {
     }
   };
 
+  showAlert = (show = false, type = "", msg = "") => {
+    this.setState({
+      alert: { show, msg, type },
+    });
+
+    const fnc = setTimeout(() => {
+      this.setState({ alert: { show: false, msg: "", type: "" } });
+    }, 5000);
+    return () => clearTimeout(fnc);
+  };
+
   render() {
     const { alert, isEditing, name, list } = this.state;
     return (
       <section className="section-center">
         <form className="grocery-form" onSubmit={this.handleSubmit}>
-          {alert.show && <Alert />}
+          {alert.show && <Alert {...alert} />}
           <h3>grocery bud</h3>
           <div className="form-control">
             <input

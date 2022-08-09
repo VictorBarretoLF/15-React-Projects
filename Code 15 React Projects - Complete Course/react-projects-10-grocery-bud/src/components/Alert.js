@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class Alert extends Component {
   render() {
-    return <h2>alert component</h2>;
+    const { type, msg } = this.props;
+    return <p className={`alert alert-${type}`}>{msg}</p>;
   }
 }
 
