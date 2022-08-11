@@ -3,7 +3,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 class List extends Component {
   render() {
-    const { items } = this.props;
+    const { items, removeItem } = this.props;
 
     return (
       <div className="grocery-list">
@@ -15,7 +15,7 @@ class List extends Component {
                 <button type="button" className="edit-btn">
                   <FaEdit />
                 </button>
-                <button type="button" className="delete-btn">
+                <button type="button" className="delete-btn" onClick={removeItem(id)}>
                   <FaTrash />
                 </button>
               </div>

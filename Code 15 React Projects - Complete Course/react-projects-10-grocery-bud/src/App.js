@@ -36,11 +36,6 @@ class App extends Component {
     this.setState({
       alert: { show, msg, type },
     });
-
-    const fnc = setTimeout(() => {
-      this.setState({ alert: { show: false, msg: "", type: "" } });
-    }, 5000);
-    return () => clearTimeout(fnc);
   };
 
   clearList = () => {
@@ -48,13 +43,21 @@ class App extends Component {
     this.setState({ list: [] });
   };
 
+  removeItem = (id) => () => {
+    let newList;
+    const { list } = this.state;
+    this.showAlert(true, "danger", "item removed");
+    newList = list.filter((item) => item.id !== id);
+    this.setState({ list: newList });
+  };
+
   render() {
     const { alert, isEditing, name, list } = this.state;
-    const { clearList } = this;
+    const { clearList, removeItem, showAlert } = this;
     return (
       <section className="section-center">
         <form className="grocery-form" onSubmit={this.handleSubmit}>
-          {alert.show && <Alert {...alert} />}
+          {alert.show && <Alert {...alert} removeAlert={showAlert}/>}
           <h3>grocery bud</h3>
           <div className="form-control">
             <input
@@ -73,7 +76,7 @@ class App extends Component {
         </form>
         {list.length > 0 && (
           <div className="grocery-container">
-            <List items={list} />
+            <List items={list} removeItem={removeItem} />
             <button className="clear-btn" onClick={clearList}>
               clear it
             </button>
