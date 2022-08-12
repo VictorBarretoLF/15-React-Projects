@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import List from "./components/List";
 import Alert from "./components/Alert";
+import { getLocalStorage } from "./utils/getLocalStorage";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       name: "",
-      list: [],
+      list: getLocalStorage(),
       isEditing: false,
       editID: null,
       alert: { show: false, msg: "", type: "" },
@@ -65,6 +66,10 @@ class App extends Component {
   editItem = (id) => () => {
     const specifItem = this.state.list.find((item) => item.id === id);
     this.setState({ isEditing: true, editID: id, name: specifItem.title });
+  };
+
+  componentDidUpdate = () => {
+    localStorage.setItem("list", JSON.stringify(this.state.list));
   };
 
   render() {
