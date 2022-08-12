@@ -16,11 +16,22 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { name, isEditing, list } = this.state;
+    const { name, isEditing, list, editID } = this.state;
     if (!name) {
       this.showAlert(true, "danger", "please enter value");
     } else if (name && isEditing) {
       // deal with edit
+      let newList = this.state.list.map((item) => {
+        if (item.id === editID) return { ...item, title: name };
+        return item;
+      });
+      this.setState({
+        list: newList,
+        name: "",
+        editID: null,
+        isEditing: false,
+      });
+      this.showAlert(true, "success", "value changed!");
     } else {
       // show alert
       this.showAlert(true, "success", "item added to the list");
@@ -51,13 +62,18 @@ class App extends Component {
     this.setState({ list: newList });
   };
 
+  editItem = (id) => () => {
+    const specifItem = this.state.list.find((item) => item.id === id);
+    this.setState({ isEditing: true, editID: id, name: specifItem.title });
+  };
+
   render() {
     const { alert, isEditing, name, list } = this.state;
-    const { clearList, removeItem, showAlert } = this;
+    const { clearList, removeItem, showAlert, editItem } = this;
     return (
       <section className="section-center">
         <form className="grocery-form" onSubmit={this.handleSubmit}>
-          {alert.show && <Alert {...alert} removeAlert={showAlert}/>}
+          {alert.show && <Alert {...alert} removeAlert={showAlert} />}
           <h3>grocery bud</h3>
           <div className="form-control">
             <input
@@ -76,7 +92,7 @@ class App extends Component {
         </form>
         {list.length > 0 && (
           <div className="grocery-container">
-            <List items={list} removeItem={removeItem} />
+            <List items={list} removeItem={removeItem} editItem={editItem} />
             <button className="clear-btn" onClick={clearList}>
               clear it
             </button>
