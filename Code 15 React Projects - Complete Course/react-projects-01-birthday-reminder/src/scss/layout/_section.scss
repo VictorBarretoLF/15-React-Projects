@@ -1,0 +1,11 @@
+@use "../util/" as util;
+
+.section {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: util.$max-width;
+
+  @include util.breakpoint(large) {
+    width: 95vw;
+  }
+}

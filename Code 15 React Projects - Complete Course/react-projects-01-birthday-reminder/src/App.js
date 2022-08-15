@@ -27,7 +27,9 @@ class App extends Component {
         <section className="container">
           <h3>{people.length} birthdays today</h3>
           <List people={people} />
-          <button onClick={onClickHandler}>clear all</button>
+          <button onClick={onClickHandler} className="container__btn">
+            clear all
+          </button>
         </section>
       </main>
     );
