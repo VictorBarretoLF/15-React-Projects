@@ -16,6 +16,12 @@ body {
   font-size: 0.875rem;
 }
 
+main {
+  width: 90vw;
+  max-width: util.$fixed-width;
+  margin: 5rem auto;
+}
+
 button {
   background: transparent;
   border-color: transparent;

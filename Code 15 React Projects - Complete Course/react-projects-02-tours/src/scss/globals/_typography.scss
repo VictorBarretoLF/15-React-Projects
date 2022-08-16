@@ -18,10 +18,13 @@ h4 {
   margin-bottom: 0.75rem;
 }
 h1 {
-  font-size: 3rem;
+  // font-size: 3rem;
+  // on screens of 375px is 48px font-size. On screens of min 800px is 64px font-size.
+  font-size: clamp(3rem, 2rem + 4vw, 4rem);
 }
 h2 {
-  font-size: 2rem;
+  // on screens of 375px is 32px font-size. On screens of min 800px is 40px font-size.
+  font-size: clamp(2rem, 24px + 2vw, 2.5rem);
 }
 h3 {
   font-size: 1.25rem;
@@ -34,12 +37,6 @@ p {
   color: util.$clr-grey-5;
 }
 @media screen and (min-width: 800px) {
-  h1 {
-    font-size: 4rem;
-  }
-  h2 {
-    font-size: 2.5rem;
-  }
   h3 {
     font-size: 1.75rem;
   }
