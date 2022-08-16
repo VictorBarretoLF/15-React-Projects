@@ -1,6 +1,7 @@
-import "./App.css";
 import { Component } from "react";
 import Tours from "./components/Tours";
+import "./App.scss";
+import Loading from "./components/Loading";
 
 class App extends Component {
   constructor() {
@@ -42,9 +43,7 @@ class App extends Component {
     if (loading) {
       return (
         <main>
-          <div className="loading">
-            <h1>loading...</h1>
-          </div>
+          <Loading />
         </main>
       );
     }
@@ -54,7 +53,7 @@ class App extends Component {
         <main>
           <div className="title">
             <h2>no tours left</h2>
-            <button className="btn" onClick={this.fetchTours}>
+            <button className="title__btn" onClick={this.fetchTours}>
               refresh
             </button>
           </div>

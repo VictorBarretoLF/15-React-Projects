@@ -1,0 +1,27 @@
+@use "../util/" as util;
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: util.$clr-grey-10;
+  color: util.$clr-grey-1;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+button {
+  background: transparent;
+  border-color: transparent;
+  text-transform: capitalize;
+  color: util.$clr-primary-5;
+  font-size: 1rem;
+  cursor: pointer;
+  padding-left: 0.25rem;
+}

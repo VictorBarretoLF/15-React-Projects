@@ -9,7 +9,7 @@ class Tours extends Component {
       <section>
         <div className="title">
           <h2>our tours</h2>
-          <div className="underline"></div>
+          <div className="title__underline"></div>
         </div>
         <div>
           {tours.map((tour) => {
