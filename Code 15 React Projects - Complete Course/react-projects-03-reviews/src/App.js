@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import Review from "./components/Review";
-import "./App.css";
+import "./App.scss";
 
 class App extends Component {
   render() {
     return (
       <main>
         <section className="container">
-          <div className="title">
+          <div className="container__title">
             <h2>our reviews</h2>
-            <div className="underline"></div>
+            <div className="container__underline"></div>
           </div>
           <Review />
         </section>

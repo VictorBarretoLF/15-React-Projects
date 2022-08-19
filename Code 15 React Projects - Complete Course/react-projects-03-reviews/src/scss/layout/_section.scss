@@ -1,0 +1,11 @@
+@use "../utils/" as util;
+
+.section {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: util.$max-width;
+
+  @media (min-width: 992px) {
+    width: 95vw;
+  }
+}

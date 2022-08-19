@@ -32,27 +32,31 @@ class Review extends Component {
   render() {
     const { image, name, job, text } = this.state.review;
     const { nextPerson, prevPerson, randomPerson } = this;
-    console.log("redering");
+
     return (
       <article className="review">
-        <div className="img-container">
-          <img src={image} alt={name} className="person-img" />
-          <span className="quote-icon">
+        <div className="review__img-container">
+          <img
+            src={image}
+            alt={name}
+            className="review__img-container--person"
+          />
+          <span className="review__img-container--icon">
             <FaQuoteRight />
           </span>
         </div>
-        <h4 className="author">{name}</h4>
-        <p className="job">{job}</p>
-        <p className="info">{text}</p>
-        <div className="button-container">
-          <button className="prev-btn" onClick={prevPerson}>
+        <h4 className="review__author">{name}</h4>
+        <p className="review__job">{job}</p>
+        <p className="review__info">{text}</p>
+        <div>
+          <button className="review__prev-btn" onClick={prevPerson}>
             <FaChevronLeft />
           </button>
-          <button className="next-btn" onClick={nextPerson}>
+          <button className="review__next-btn" onClick={nextPerson}>
             <FaChevronRight />
           </button>
         </div>
-        <button className="random-btn" onClick={randomPerson}>
+        <button className="review__random-btn" onClick={randomPerson}>
           surprise me
         </button>
       </article>

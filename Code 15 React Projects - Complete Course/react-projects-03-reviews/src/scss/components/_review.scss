@@ -1,0 +1,104 @@
+@use "../utils/" as util;
+
+.review {
+  background: util.$clr-white;
+  padding: 1.5rem 2rem;
+  border-radius: util.$radius;
+  box-shadow: util.$light-shadow;
+  transition: util.$transition;
+  text-align: center;
+
+  &:hover {
+    box-shadow: util.$dark-shadow;
+  }
+
+  &__img-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+
+    &--person {
+      width: 100%;
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    &--icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transform: translateY(25%);
+      background: util.$clr-primary-5;
+      color: util.$clr-white;
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: util.$clr-primary-5;
+      position: absolute;
+      top: -0.25rem;
+      right: -0.5rem;
+      border-radius: 50%;
+    }
+  }
+
+  &__author {
+    margin-bottom: 0.25rem;
+  }
+
+  &__job {
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    color: util.$clr-primary-5;
+    font-size: 0.85rem;
+  }
+
+  &__info {
+    margin-bottom: 0.75rem;
+  }
+
+  &__prev-btn,
+  &__next-btn {
+    color: util.$clr-primary-7;
+    font-size: 1.25rem;
+    background: transparent;
+    border-color: transparent;
+    margin: 0 0.5rem;
+    transition: util.$transition;
+    cursor: pointer;
+
+    &:hover {
+      color: util.$clr-primary-5;
+    }
+  }
+
+  &__random-btn {
+    margin-top: 0.5rem;
+    background: util.$clr-primary-10;
+    color: util.$clr-primary-5;
+    padding: 0.25rem 0.5rem;
+    text-transform: capitalize;
+    border-radius: util.$radius;
+    transition: util.$transition;
+    border-color: transparent;
+    cursor: pointer;
+
+    &:hover {
+      background: util.$clr-primary-5;
+      color: util.$clr-primary-1;
+    }
+  }
+}
