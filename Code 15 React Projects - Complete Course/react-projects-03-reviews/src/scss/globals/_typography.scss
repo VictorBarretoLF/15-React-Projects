@@ -1,4 +1,5 @@
 @use "../utils/" as util;
+@use "../functions/" as f;
 
 ul {
   list-style-type: none;
@@ -15,36 +16,36 @@ h4 {
   letter-spacing: util.$spacing;
   text-transform: capitalize;
   line-height: 1.25;
-  margin-bottom: 0.75rem;
+  margin-bottom: f.em(12);
 
-  @media screen and (min-width: 800px) {
+  @media (min-width: f.em(800)) {
     line-height: 1;
   }
 }
 h1 {
   // font-size: 3rem;
   // on screens of 375px is 48px font-size. On screens of min 800px is 64px font-size.
-  font-size: clamp(3rem, 2rem + 4vw, 4rem);
+  font-size: clamp(f.rem(48), f.rem(32) + 4vw, f.rem(64));
 }
 h2 {
   // on screens of 375px is 32px font-size. On screens of min 800px is 40px font-size.
-  font-size: clamp(2rem, 24px + 2vw, 2.5rem);
+  font-size: clamp(f.rem(32), f.rem(24) + 2vw, f.rem(40));
 }
 h3 {
   font-size: clamp(
-    1.25rem,
-    0.75rem + 2vw,
-    1.75rem
+    f.rem(20),
+    f.rem(12) + 2vw,
+    f.rem(28)
   ); // 20px, 12px + 2vw, 28px tela de 800px
 }
 h4 {
   font-size: clamp(
-    14px,
-    4px + 1.5vw,
-    16px
+    f.rem(14),
+    f.rem(4) + 1.5vw,
+    f.rem(16)
   ); // 14px, calc , 16px // 0.875rem, 1rem
 }
 p {
-  margin-bottom: 1.25rem;
+  margin-bottom: f.rem(20);
   color: util.$clr-grey-5;
 }
