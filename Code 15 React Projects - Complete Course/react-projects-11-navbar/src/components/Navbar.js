@@ -17,10 +17,16 @@ class Navbar extends Component {
           <div className="links-container show-container">
             <ul className="links">
               <li>
-                <a href="#">home</a>
-                <a href="#">about</a>
-                <a href="#">contact</a>
-                <a href="#">products</a>
+                <a href="#a">home</a>
+              </li>
+              <li>
+                <a href="#a">about</a>
+              </li>
+              <li>
+                <a href="#a">contact</a>
+              </li>
+              <li>
+                <a href="#a">products</a>
               </li>
             </ul>
           </div>
