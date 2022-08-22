@@ -1,4 +1,5 @@
 @use '../utils/' as util;
+@use '../functions/' as f;
 
 *,
 ::after,
@@ -13,7 +14,7 @@ body {
   background: util.$clr-grey-10;
   color: util.$clr-grey-1;
   line-height: 1.5;
-  font-size: 0.875rem;
+  font-size: f.rem(14);
 }
 
 main {

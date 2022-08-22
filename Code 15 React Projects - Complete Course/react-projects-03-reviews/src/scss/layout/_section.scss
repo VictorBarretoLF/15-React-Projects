@@ -1,11 +1,12 @@
 @use "../utils/" as util;
+@use "../functions/" as f;
 
 .section {
   width: 90vw;
   margin: 0 auto;
   max-width: util.$max-width;
 
-  @media (min-width: 992px) {
+  @media (min-width: f.em(992)) {
     width: 95vw;
   }
 }
