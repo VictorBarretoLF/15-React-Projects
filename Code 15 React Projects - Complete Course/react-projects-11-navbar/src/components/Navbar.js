@@ -1,5 +1,5 @@
 import React, { Component, createRef } from "react";
-import { FaBars, FaTwitter } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { links, social } from "../utils/helper-objects/navLinks";
 import logo from "../utils/svg/logo.svg";
 
@@ -18,7 +18,6 @@ class Navbar extends Component {
   };
 
   componentDidUpdate = () => {
-    // console.log(this.state)
     const linksHeight = this.linksRef.current.getBoundingClientRect().height;
     if (this.state.showLinks) {
       this.linksContainerRef.current.style.height = `${linksHeight}px`;
