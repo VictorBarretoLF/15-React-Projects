@@ -56,7 +56,7 @@ class Review extends Component {
             <FaChevronRight />
           </button>
         </div>
-        <button className="review__random-btn" onClick={randomPerson}>
+        <button type="button" className="review__random-btn" onClick={randomPerson}>
           surprise me
         </button>
       </article>
