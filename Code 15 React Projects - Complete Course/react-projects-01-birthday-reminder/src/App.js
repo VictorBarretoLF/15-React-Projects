@@ -1,5 +1,4 @@
 import { Component } from "react";
-import "./App.scss";
 import List from "./components/List";
 import { birthdays } from "./data/birthdays";
 
