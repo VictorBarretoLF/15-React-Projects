@@ -22,9 +22,11 @@ class App extends Component {
     const { onClickHandler } = this;
 
     return (
-      <main>
-        <section className="container">
-          <h3>{people.length} birthdays today</h3>
+      <main className="min-h-screen flex justify-center items-center">
+        <section className="w-[90vw] max-w-fixedWidth bg-[#fff] rounded px-6 py-8 shadow-darkShadow my-20 mx-0">
+          <h3 className="normal-case font-medium mb-6  md:text-[1.75rem]">
+            {people.length} birthdays today
+          </h3>
           <List people={people} />
           <button
             onClick={onClickHandler}

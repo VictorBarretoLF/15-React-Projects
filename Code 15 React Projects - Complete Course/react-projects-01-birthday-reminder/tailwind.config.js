@@ -9,11 +9,16 @@ module.exports = {
       },
       boxShadow: {
         lightShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
+        darkShadow: "0 5px 15px rgba(0, 0, 0, 0.4)",
       },
       gridTemplateColumns: {
         "auto-1": "auto 1fr",
+      },
+      maxWidth: {
+        fixedWidth: "450px",
       },
     },
   },
   plugins: [],
 };
+
