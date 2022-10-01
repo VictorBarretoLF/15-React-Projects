@@ -13,9 +13,6 @@ module.exports = {
       gridTemplateColumns: {
         "auto-1": "auto 1fr",
       },
-      outline: {
-        outlinePink: "1px solid rgba(242, 138, 178, 1)",
-      },
     },
   },
   plugins: [],
