@@ -1,5 +1,4 @@
-const List = () => {
-  const { people } = this.props;
+const List = ({ people }) => {
   return (
     <>
       {people.map(({ id, name, age, image }) => {

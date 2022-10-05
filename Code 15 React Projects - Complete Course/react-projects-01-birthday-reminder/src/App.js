@@ -1,39 +1,27 @@
-import { Component } from "react";
 import "./App.scss";
 import List from "./components/List";
-import { birthdays } from "./data/birthdays";
+import { useSelector, useDispatch } from "react-redux";
+import { clearList } from "./features/list/listSlice";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.onClickHandler = this.onClickHandler.bind(this);
-    this.state = {
-      people: birthdays,
-    };
-  }
+const App = () => {
+  const list = useSelector((state) => state.birthdayList.list);
+  const dispatch = useDispatch();
 
-  onClickHandler() {
-    this.setState({
-      people: [],
-    });
-  }
+  const onClickHandler = () => {
+    dispatch(clearList());
+  };
 
-  render() {
-    const { people } = this.state;
-    const { onClickHandler } = this;
-
-    return (
-      <main>
-        <section className="container">
-          <h3>{people.length} birthdays today</h3>
-          <List people={people} />
-          <button onClick={onClickHandler} className="container__btn">
-            clear all
-          </button>
-        </section>
-      </main>
-    );
-  }
-}
+  return (
+    <main>
+      <section className="container">
+        <h3>{list.length} birthdays today</h3>
+        <List people={list} />
+        <button onClick={onClickHandler} className="container__btn">
+          clear all
+        </button>
+      </section>
+    </main>
+  );
+};
 
 export default App;
