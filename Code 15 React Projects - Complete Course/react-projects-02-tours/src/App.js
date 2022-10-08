@@ -1,72 +1,64 @@
-import { Component } from "react";
 import Tours from "./components/Tours";
 import "./App.scss";
 import Loading from "./components/Loading";
+import { useState } from "react";
+import { useEffect } from "react";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.URL = "https://course-api.com/react-tours-project";
-    this.fetchTours = this.fetchTours.bind(this);
-    this.state = {
-      loading: true,
-      tours: [],
-    };
-  }
+const URL = "https://course-api.com/react-tours-project";
 
-  componentDidMount() {
-    this.fetchTours();
-  }
+const App = () => {
+  const [loading, setLoading] = useState(true);
+  const [tours, setTours] = useState([]);
 
-  fetchTours = async () => {
-    this.setState({ loading: true });
+  useEffect(() => {
+    fetchTours();
+  }, []);
+
+  const fetchTours = async () => {
+    setLoading(true);
 
     try {
-      const response = await fetch(this.URL);
+      const response = await fetch(URL);
       const data = await response.json();
-      this.setState({ loading: false });
-      this.setState({ tours: data });
+      setLoading(false);
+      setTours(data);
     } catch (err) {
-      this.setState({ loading: false });
+      setLoading(false);
       console.log(err);
     }
   };
 
-  removeTour = (id) => {
-    const newTours = this.state.tours.filter((tour) => tour.id !== id);
-    this.setState({ tours: newTours });
+  const removeTour = (id) => {
+    const newTours = tours.filter((tour) => tour.id !== id);
+    setTours(newTours);
   };
 
-  render() {
-    const { loading, tours } = this.state;
-
-    if (loading) {
-      return (
-        <main>
-          <Loading />
-        </main>
-      );
-    }
-
-    if (tours.length === 0) {
-      return (
-        <main>
-          <div className="title">
-            <h2>no tours left</h2>
-            <button className="title__btn" onClick={this.fetchTours}>
-              refresh
-            </button>
-          </div>
-        </main>
-      );
-    }
-
+  if (loading) {
     return (
       <main>
-        <Tours tours={tours} removeTour={this.removeTour} />
+        <Loading />
       </main>
     );
   }
-}
+
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className="title">
+          <h2>no tours left</h2>
+          <button className="title__btn" onClick={fetchTours}>
+            refresh
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main>
+      <Tours tours={tours} removeTour={removeTour} />
+    </main>
+  );
+};
 
 export default App;
