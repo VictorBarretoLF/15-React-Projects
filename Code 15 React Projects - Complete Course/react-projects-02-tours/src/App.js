@@ -1,60 +1,45 @@
 import Tours from "./components/Tours";
 import "./App.scss";
 import Loading from "./components/Loading";
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectAllTours } from "./redux/features/toursSlice";
-
-const URL = "https://course-api.com/react-tours-project";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectAllTours,
+  getToursStatus,
+  fetchTours,
+} from "./redux/features/toursSlice";
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   const tours = useSelector(selectAllTours);
-  console.log(tours)
-  // useEffect(() => {
-  //   fetchTours();
-  // }, []);
+  const toursStatus = useSelector(getToursStatus);
 
-  // const fetchTours = async () => {
-  //   setLoading(true);
+  useEffect(() => {
+    if (toursStatus === "idle") {
+      dispatch(fetchTours());
+    }
+  }, []);
 
-  //   try {
-  //     const response = await fetch(URL);
-  //     const data = await response.json();
-  //     console.log(data);
-  //     setLoading(false);
-  //     setTours(data);
-  //   } catch (err) {
-  //     setLoading(false);
-  //     console.log(err);
-  //   }
-  // };
+  if (toursStatus === "loading") {
+    return (
+      <main>
+        <Loading />
+      </main>
+    );
+  }
 
-  // const removeTour = (id) => {
-  //   const newTours = tours.filter((tour) => tour.id !== id);
-  //   setTours(newTours);
-  // };
-
-  // if (loading) {
-  //   return (
-  //     <main>
-  //       <Loading />
-  //     </main>
-  //   );
-  // }
-
-  // if (tours.length === 0) {
-  //   return (
-  //     <main>
-  //       <div className="title">
-  //         <h2>no tours left</h2>
-  //         <button className="title__btn" onClick={fetchTours}>
-  //           refresh
-  //         </button>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className="title">
+          <h2>no tours left</h2>
+          <button className="title__btn" onClick={() => dispatch(fetchTours())}>
+            refresh
+          </button>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main>
@@ -64,3 +49,5 @@ const App = () => {
 };
 
 export default App;
+
+//

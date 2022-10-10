@@ -1,6 +1,6 @@
 import Tour from "./Tour";
 
-const Tours = ({ tours = [], removeTour }) => {
+const Tours = ({ tours, removeTour }) => {
   return (
     <section>
       <div className="title">

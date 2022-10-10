@@ -1,47 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = [
-  {
-    id: "rec6d6T3q5EBIdCfD",
-    image:
-      "https://dl.airtable.com/.attachments/a0cd0702c443f31526267f38ea5314a1/2447eb7a/paris.jpg",
-    info: "Paris is synonymous with the finest things that culture can offer — in art, fashion, food, literature, and ideas. On this tour, your Paris-savvy Rick Steves guide will immerse you in the very best of the City of Light: the masterpiece-packed Louvre and Orsay museums, resilient Notre-Dame Cathedral, exquisite Sainte-Chapelle, and extravagant Palace of Versailles. You'll also enjoy guided neighborhood walks through the city's historic heart as well as quieter moments to slow down and savor the city's intimate cafés, colorful markets, and joie de vivre. Join us for the Best of Paris in 7 Days!",
-    name: "Best of Paris in 7 Days Tour",
-    price: "1,995",
-  },
-  {
-    id: "rec6d6T3q5EBIdCfe",
-    image:
-      "https://dl.airtable.com/.attachments/a0cd0702c443f31526267f38ea5314a1/2447eb7a/paris.jpg",
-    info: "Paris is synonymous with the finest things that culture can offer — in art, fashion, food, literature, and ideas. On this tour, your Paris-savvy Rick Steves guide will immerse you in the very best of the City of Light: the masterpiece-packed Louvre and Orsay museums, resilient Notre-Dame Cathedral, exquisite Sainte-Chapelle, and extravagant Palace of Versailles. You'll also enjoy guided neighborhood walks through the city's historic heart as well as quieter moments to slow down and savor the city's intimate cafés, colorful markets, and joie de vivre. Join us for the Best of Paris in 7 Days!",
-    name: "Best of Paris in 7 Days Tour",
-    price: "1,995",
-  },
-  {
-    id: "rec6d6T3q5EBIdCff",
-    image:
-      "https://dl.airtable.com/.attachments/a0cd0702c443f31526267f38ea5314a1/2447eb7a/paris.jpg",
-    info: "Paris is synonymous with the finest things that culture can offer — in art, fashion, food, literature, and ideas. On this tour, your Paris-savvy Rick Steves guide will immerse you in the very best of the City of Light: the masterpiece-packed Louvre and Orsay museums, resilient Notre-Dame Cathedral, exquisite Sainte-Chapelle, and extravagant Palace of Versailles. You'll also enjoy guided neighborhood walks through the city's historic heart as well as quieter moments to slow down and savor the city's intimate cafés, colorful markets, and joie de vivre. Join us for the Best of Paris in 7 Days!",
-    name: "Best of Paris in 7 Days Tour",
-    price: "1,995",
-  },
-  {
-    id: "rec6d6T3q5EBIdCfg",
-    image:
-      "https://dl.airtable.com/.attachments/a0cd0702c443f31526267f38ea5314a1/2447eb7a/paris.jpg",
-    info: "Paris is synonymous with the finest things that culture can offer — in art, fashion, food, literature, and ideas. On this tour, your Paris-savvy Rick Steves guide will immerse you in the very best of the City of Light: the masterpiece-packed Louvre and Orsay museums, resilient Notre-Dame Cathedral, exquisite Sainte-Chapelle, and extravagant Palace of Versailles. You'll also enjoy guided neighborhood walks through the city's historic heart as well as quieter moments to slow down and savor the city's intimate cafés, colorful markets, and joie de vivre. Join us for the Best of Paris in 7 Days!",
-    name: "Best of Paris in 7 Days Tour",
-    price: "1,995",
-  },
-  {
-    id: "rec6d6T3q5EBIdCfh",
-    image:
-      "https://dl.airtable.com/.attachments/a0cd0702c443f31526267f38ea5314a1/2447eb7a/paris.jpg",
-    info: "Paris is synonymous with the finest things that culture can offer — in art, fashion, food, literature, and ideas. On this tour, your Paris-savvy Rick Steves guide will immerse you in the very best of the City of Light: the masterpiece-packed Louvre and Orsay museums, resilient Notre-Dame Cathedral, exquisite Sainte-Chapelle, and extravagant Palace of Versailles. You'll also enjoy guided neighborhood walks through the city's historic heart as well as quieter moments to slow down and savor the city's intimate cafés, colorful markets, and joie de vivre. Join us for the Best of Paris in 7 Days!",
-    name: "Best of Paris in 7 Days Tour",
-    price: "1,995",
-  },
-];
+const URL = "https://course-api.com/react-tours-project";
+
+const initialState = {
+  tours: [],
+  status: "idle",
+  error: null,
+};
+
+export const fetchTours = createAsyncThunk(URL, async () => {
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    return e.message;
+  }
+});
 
 const toursSlice = createSlice({
   name: "tours",
@@ -49,12 +24,30 @@ const toursSlice = createSlice({
   reducers: {
     remoteTour(state, action) {
       const id = action.payload;
-      return [...state.filter((tour) => tour.id !== id)];
+      const currentTours = state.tours.filter((tour) => tour.id !== id);
+
+      return { ...state, tours: currentTours };
     },
+  },
+  extraReducers: (builder) => {
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder
+      .addCase(fetchTours.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(fetchTours.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.tours = action.payload;
+      })
+      .addCase(fetchTours.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
   },
 });
 
-export const selectAllTours = (state) => state.tours;
+export const selectAllTours = (state) => state.tours.tours;
+export const getToursStatus = (state) => state.tours.status;
 
 export const { remoteTour } = toursSlice.actions;
 
