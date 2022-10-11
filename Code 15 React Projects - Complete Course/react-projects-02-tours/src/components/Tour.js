@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { remoteTour } from "../redux/features/toursSlice";
+import { remoteTour } from "../features/toursSlice";
 
 const Tour = ({ id, image, info, name, price, removeTour }) => {
   const [readMore, setReadMore] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <article className="single-tour">
@@ -28,7 +28,7 @@ const Tour = ({ id, image, info, name, price, removeTour }) => {
         <button
           className="single-tour__delete-btn"
           onClick={() => {
-            dispatch(remoteTour(id))
+            dispatch(remoteTour(id));
           }}
         >
           not interested

@@ -7,7 +7,7 @@ import {
   selectAllTours,
   getToursStatus,
   fetchTours,
-} from "./redux/features/toursSlice";
+} from "./features/toursSlice";
 
 const App = () => {
   const dispatch = useDispatch();
