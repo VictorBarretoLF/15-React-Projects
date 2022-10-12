@@ -17,5 +17,8 @@
     a {
         text-decoration: none;
     }
+    main {
+      width: 90vw;
+    }
 }
 

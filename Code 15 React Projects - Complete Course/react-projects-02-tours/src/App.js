@@ -41,7 +41,7 @@ const App = () => {
 
   if (tours.length === 0) {
     return (
-      <main>
+      <main className="">
         <div className="title">
           <h2 className="text-4xl font-bold underline">no tours left</h2>
           <button className="title__btn" onClick={fetchTours}>
@@ -53,7 +53,7 @@ const App = () => {
   }
 
   return (
-    <main>
+    <main className="w-fixedWidth mx-auto my-20">
       <Tours tours={tours} removeTour={removeTour} />
     </main>
   );
