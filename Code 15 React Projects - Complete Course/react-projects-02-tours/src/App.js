@@ -43,7 +43,7 @@ const App = () => {
     return (
       <main>
         <div className="title">
-          <h2>no tours left</h2>
+          <h2 className="text-4xl font-bold underline">no tours left</h2>
           <button className="title__btn" onClick={fetchTours}>
             refresh
           </button>
