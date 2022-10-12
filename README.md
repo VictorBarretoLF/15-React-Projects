@@ -15,3 +15,4 @@ A collection of projects in react to help understand how react works and ways to
    * Tailwind CSS
    * Axios
 3. [redux](https://github.com/VictorBarretoLF/React-Projects/tree/redux)
+   * redux toolkit
