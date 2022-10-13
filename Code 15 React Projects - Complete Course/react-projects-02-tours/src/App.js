@@ -33,7 +33,7 @@ const App = () => {
 
   if (loading) {
     return (
-      <main>
+      <main className="w-fixedWidth mx-auto my-20">
         <Loading />
       </main>
     );
@@ -41,10 +41,10 @@ const App = () => {
 
   if (tours.length === 0) {
     return (
-      <main className="">
+      <main className="w-fixedWidth mx-auto my-20">
         <div className="title">
-          <h2 className="text-4xl font-bold underline">no tours left</h2>
-          <button className="title__btn" onClick={fetchTours}>
+          <h1 className="text-center mb-10 capitalize font-bold">no tours left</h1>
+          <button className="mx-auto block bg-clrPrimary5 px-2 py-1 text-xl capitalize text-white rounded tracking-widest" onClick={fetchTours}>
             refresh
           </button>
         </div>
