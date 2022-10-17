@@ -24,9 +24,7 @@ const toursSlice = createSlice({
   reducers: {
     remoteTour(state, action) {
       const id = action.payload;
-      const currentTours = state.tours.filter((tour) => tour.id !== id);
-
-      return { ...state, tours: currentTours };
+      state.tours = state.tours.filter((tour) => tour.id !== id);
     },
   },
   extraReducers: (builder) => {
