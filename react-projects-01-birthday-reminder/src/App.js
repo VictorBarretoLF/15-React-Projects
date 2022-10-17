@@ -1,4 +1,3 @@
-import "./App.scss";
 import List from "./components/List";
 import { useSelector, useDispatch } from "react-redux";
 import { clearList } from "./features/list/listSlice";
